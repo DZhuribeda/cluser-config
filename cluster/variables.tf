@@ -1,11 +1,13 @@
-variable "do_token" {}
+variable "do_token" {
+  sensitive = true
+}
 
 variable "cluster_name" {
   default = "primary"
 }
 
 variable "region" {
-  default = "fra1"
+  default = "ams3"
 }
 
 variable "cluster_version" {
