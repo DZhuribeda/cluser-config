@@ -9,5 +9,13 @@ loki:
 
 promtail:
   enabled: true
+  pipelineStages:
+  - cri: {}
   serviceMonitor:
     enabled: true
+
+grafana:
+  enabled: false
+  sidecar:
+    datasources:
+      enabled: false
