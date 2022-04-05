@@ -1,4 +1,8 @@
 resource "kubernetes_secret" "github_registry" {
+  depends_on = [
+    kubernetes_namespace.counter,
+  ]
+
   metadata {
     name      = "docker-github-registry"
     namespace = "counter"

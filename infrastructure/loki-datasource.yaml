@@ -7,7 +7,7 @@ datasources:
   version: 1
   jsonData:
     derivedFields:
-      - datasourceUid: tempo
+      - datasourceUid: my_tempo
         matcherRegex: "trace_id\": \"(\w+)"
         name: TraceID
         # url will be interpreted as query for the datasource

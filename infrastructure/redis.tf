@@ -10,6 +10,7 @@ resource "digitalocean_database_cluster" "counter_app_redis" {
 resource "kubernetes_secret" "counter_app_redis_creds" {
   depends_on = [
     digitalocean_database_cluster.counter_app_redis,
+    kubernetes_namespace.counter,
   ]
   metadata {
     name      = "counter-app-redis-creds"
