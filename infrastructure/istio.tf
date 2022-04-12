@@ -3,7 +3,7 @@ resource "helm_release" "istio_base" {
   repository = "https://istio-release.storage.googleapis.com/charts"
   chart      = "base"
 
-  namespace = "istio-system"
+  namespace        = "istio-system"
   create_namespace = true
 }
 
@@ -15,8 +15,12 @@ resource "helm_release" "istiod" {
   repository = "https://istio-release.storage.googleapis.com/charts"
   chart      = "istiod"
 
-  wait = true
+  wait      = true
   namespace = "istio-system"
+
+  values = [
+    "${file("istio-values.yaml")}"
+  ]
 }
 
 
@@ -29,6 +33,6 @@ resource "helm_release" "istio_ingress" {
   repository = "https://istio-release.storage.googleapis.com/charts"
   chart      = "gateway"
 
-  wait = true
+  wait      = true
   namespace = "istio-ingress"
 }

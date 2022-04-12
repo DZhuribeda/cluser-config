@@ -3,6 +3,12 @@ commonLabels:
 
 prometheus:
   prometheusSpec:
+    podMonitorSelector:
+      matchLabels:
+        prometheus: primary
+    podMonitorNamespaceSelector:
+      matchLabels:
+        monitoring: enabled
     serviceMonitorSelector:
       matchLabels:
         prometheus: primary

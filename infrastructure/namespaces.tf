@@ -11,7 +11,7 @@ resource "kubernetes_namespace" "observability" {
 resource "kubernetes_namespace" "counter" {
   metadata {
     labels = {
-      monitoring = "enabled"
+      monitoring        = "enabled"
       "istio-injection" = "enabled"
     }
 
