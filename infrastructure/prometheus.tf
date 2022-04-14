@@ -16,6 +16,10 @@ resource "helm_release" "prometheus" {
 
   set {
     name  = "grafana.adminPassword"
-    value = var.grafana_admin
+    value = var.grafana_admin_password
+  }
+  set {
+    name  = "grafana.ingress.hosts[0]"
+    value = var.grafana_domain
   }
 }

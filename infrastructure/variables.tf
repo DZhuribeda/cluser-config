@@ -19,6 +19,12 @@ variable "registry_password" {
 
 variable "registry_email" {}
 
-variable "grafana_admin" {
+variable "grafana_admin_password" {
+  sensitive = true
+}
+variable "cert_issuer" {}
+variable "grafana_domain" {}
+variable "argocd_domain" {}
+variable "argocd_admin_password" {
   sensitive = true
 }

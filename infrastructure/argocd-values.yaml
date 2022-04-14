@@ -1,4 +1,6 @@
 server:
+  extraArgs:
+    - --insecure
   extensions:
     # -- Enable support for extensions
     ## This function in tech preview stage, do expect unstability or breaking changes in newer versions. Bump image.tag if necessary.
@@ -8,3 +10,8 @@ server:
     contents: 
     - name: argo-rollouts
       url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.1.0/extension.tar
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: istio

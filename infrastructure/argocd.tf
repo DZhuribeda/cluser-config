@@ -10,4 +10,12 @@ resource "helm_release" "argocd" {
   values = [
     "${file("argocd-values.yaml")}"
   ]
+  set {
+    name  = "server.ingress.hosts[0]"
+    value = var.argocd_domain
+  }
+  set {
+    name  = "server.secret.argocdServerAdminPassword"
+    value = var.argocd_admin_password
+  }
 }
