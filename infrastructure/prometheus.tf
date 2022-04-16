@@ -23,3 +23,23 @@ resource "helm_release" "prometheus" {
     value = var.grafana_domain
   }
 }
+
+
+resource "kubernetes_config_map" "additional_dashboards" {
+  depends_on = [
+    helm_release.prometheus,
+  ]
+
+  for_each = fileset("${path.module}/dashboards", "*.json")
+  metadata {
+    name = "${element(split(".", each.key), 0)}-dashboard"
+    labels = {
+      "grafana_dashboard" = "1"
+    }
+    namespace = "observability"
+  }
+
+  data = {
+    "${each.key}" = "${file("${path.module}/dashboards/${each.key}")}"
+  }
+}

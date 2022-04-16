@@ -1,11 +1,15 @@
 resource "helm_release" "cert_manager" {
+  depends_on = [
+    kubernetes_namespace.cert_manager
+  ]
+
   name       = "cert-manager"
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
   version    = "v1.8.0"
 
   namespace        = "cert-manager"
-  create_namespace = true
+
 
   set {
     name  = "installCRDs"
@@ -18,6 +22,10 @@ resource "helm_release" "cert_manager" {
   set {
     name  = "prometheus.servicemonitor.enabled"
     value = "true"
+  }
+  set {
+    name  = "prometheus.servicemonitor.prometheusInstance"
+    value = "primary"
   }
 }
 

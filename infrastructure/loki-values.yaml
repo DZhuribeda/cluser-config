@@ -6,6 +6,11 @@ loki:
     accessModes: ["ReadWriteOnce"]
     size: 5Gi
 
+  serviceMonitor:
+    enabled: true
+    additionalLabels:
+      prometheus: primary
+
 
 promtail:
   enabled: true
@@ -13,6 +18,8 @@ promtail:
   - cri: {}
   serviceMonitor:
     enabled: true
+    labels:
+      prometheus: primary
 
 grafana:
   enabled: false
