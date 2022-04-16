@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: counter-app-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: counter
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: chart
+    repoURL: https://github.com/DZhuribeda/counter-app.git
+    targetRevision: HEAD
+    helm:
+      values: |
+        imagePullSecrets:
+          - name: docker-github-registry
+        image:
+          tag: v0.5.1
+
+        servicemonitor:
+          labels:
+            prometheus: primary
+
+
+        tracing:
+          enabled: true
+          env:
+            - name: OTEL_TRACES_EXPORTER
+              value: otlp
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value:  http://tempo.observability:4317
+            - name: OTEL_SERVICE_NAME
+              value: counter-app
+
+        rollouts:
+          enabled: true
+          steps:
+          - setWeight: 40
+          - pause: {}

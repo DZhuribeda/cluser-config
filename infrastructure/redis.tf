@@ -13,7 +13,7 @@ resource "kubernetes_secret" "counter_app_redis_creds" {
     kubernetes_namespace.counter,
   ]
   metadata {
-    name      = "counter-app-redis-creds"
+    name      = "counter-app-dev-redis-creds"
     namespace = "counter"
   }
 

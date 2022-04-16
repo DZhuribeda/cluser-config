@@ -1,0 +1,47 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert-prod
+  namespace: istio-ingress
+spec:
+  secretName: ingress-cert-prod
+  commonName: app.dev.dzhurybida.com
+  dnsNames:
+  - app.dev.dzhurybida.com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: counter-gateway
+  namespace: counter
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: ingress-cert-prod # This should match the Certificate secretName
+    hosts:
+    - app.dev.dzhurybida.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: counter
+  namespace: counter
+spec:
+  hosts:
+  - "app.dev.dzhurybida.com"
+  gateways:
+  - counter-gateway
+  http:
+  - route:
+    - destination:
+        host: counter-app-dev
