@@ -6,6 +6,14 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  syncPolicy:
+    syncOptions:
+    - ApplyOutOfSyncOnly=true
+  ignoreDifferences:
+  - group: networking.istio.io
+    kind: VirtualService
+    jsonPointers:
+    - /spec/http/0
   destination:
     namespace: counter
     server: https://kubernetes.default.svc
