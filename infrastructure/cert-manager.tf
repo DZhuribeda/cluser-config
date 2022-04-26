@@ -50,7 +50,7 @@ resource "kubernetes_manifest" "cert_issuer_staging" {
           {
             "http01" = {
               "ingress" = {
-                "class" = "istio"
+                "class" = "nginx"
               }
             }
           },
@@ -81,7 +81,7 @@ resource "kubernetes_manifest" "cert_issuer_production" {
           {
             "http01" = {
               "ingress" = {
-                "class" = "istio"
+                "class" = "nginx"
               }
             }
           },

@@ -49,7 +49,3 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 kubectl argo rollouts dashboard
 ```
-
-```
-kubectl port-forward svc/kiali 20001:20001 -n istio-system
-```

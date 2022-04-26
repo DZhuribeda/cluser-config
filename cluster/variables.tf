@@ -11,7 +11,7 @@ variable "region" {
 }
 
 variable "cluster_version" {
-  default = "1.22.8-do.0"
+  default = "1.22.8-do.1"
 }
 
 variable "min_worker_count" {

@@ -12,21 +12,9 @@ resource "kubernetes_namespace" "counter" {
   metadata {
     labels = {
       monitoring        = "enabled"
-      "istio-injection" = "enabled"
     }
 
     name = "counter"
-  }
-}
-
-
-resource "kubernetes_namespace" "istio_system" {
-  metadata {
-    labels = {
-      monitoring        = "enabled"
-    }
-
-    name = "istio-system"
   }
 }
 
@@ -55,15 +43,5 @@ resource "kubernetes_namespace" "argo_rollouts" {
     }
 
     name = "argo-rollouts"
-  }
-}
-resource "kubernetes_namespace" "istio_ingress" {
-  metadata {
-    labels = {
-      "istio-injection" = "enabled"
-      monitoring        = "enabled"
-    }
-
-    name = "istio-ingress"
   }
 }
