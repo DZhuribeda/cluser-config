@@ -14,4 +14,8 @@ resource "helm_release" "ingress_nginx" {
   chart      = "ingress-nginx"
 
   namespace = "ingress-nginx"
+  set {
+    name = "controller.podAnnotations.linkerd\\.io\\/inject"
+    value = "enabled"
+  }
 }
