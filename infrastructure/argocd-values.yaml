@@ -12,9 +12,12 @@ server:
       url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.1.0/extension.tar
 
   ingress:
-    enabled: false
-    # annotations:
-    #   kubernetes.io/ingress.class: istio
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    tls:
+    - secretName: argocd-general-tls
   
   metrics:
     enabled: true

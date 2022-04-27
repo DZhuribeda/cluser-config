@@ -1,6 +1,7 @@
 resource "helm_release" "argo_rollouts" {
   depends_on = [
-    kubernetes_namespace.argo_rollouts
+    kubernetes_namespace.argo_rollouts,
+    helm_release.prometheus
   ]
   name       = "argo-rollouts"
   repository = "https://argoproj.github.io/argo-helm"

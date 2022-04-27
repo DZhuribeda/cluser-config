@@ -79,6 +79,9 @@ resource "helm_release" "linkerd" {
 
 
 resource "helm_release" "linkerd_viz" {
+  depends_on = [
+    helm_release.linkerd
+  ]
   name       = "linkerd-viz"
   repository = "https://helm.linkerd.io/stable"
   chart      = "linkerd-viz"

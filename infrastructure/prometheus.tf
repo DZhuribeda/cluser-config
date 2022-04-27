@@ -22,6 +22,10 @@ resource "helm_release" "prometheus" {
     name  = "grafana.ingress.hosts[0]"
     value = var.grafana_domain
   }
+  set {
+    name  = "grafana.ingress.tls[0].hosts[0]"
+    value = var.grafana_domain
+  }
 }
 
 
