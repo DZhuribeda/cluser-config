@@ -86,3 +86,28 @@ resource "helm_release" "linkerd_viz" {
   repository = "https://helm.linkerd.io/stable"
   chart      = "linkerd-viz"
 }
+
+resource "helm_release" "linkerd_jaeger" {
+  depends_on = [
+    helm_release.linkerd
+  ]
+  name       = "linkerd-jaeger"
+  repository = "https://helm.linkerd.io/stable"
+  chart      = "linkerd-jaeger"
+  set {
+    name  = "collector.enabled"
+    value = "false"
+  }
+  set {
+    name  = "jaeger.enabled"
+    value = "false"
+  }
+  set {
+    name  = "webhook.collectorSvcAddr"
+    value = "tempo.observability.svc.cluster.local:55678"
+  }
+  set {
+    name  = "webhook.collectorSvcAccount"
+    value = "tempo"
+  }
+}

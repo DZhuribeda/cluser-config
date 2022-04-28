@@ -18,4 +18,16 @@ resource "helm_release" "ingress_nginx" {
     name = "controller.podAnnotations.linkerd\\.io\\/inject"
     value = "enabled"
   }
+  set {
+    name = "controller.config.enable-opentracing"
+    value = "true"
+  }
+  set {
+    name = "controller.config.zipkin-collector-host"
+    value = "tempo.observability.svc.cluster.local"
+  }
+  set {
+    name = "controller.config.zipkin-service-name"
+    value = "nginx-internal"
+  }
 }
