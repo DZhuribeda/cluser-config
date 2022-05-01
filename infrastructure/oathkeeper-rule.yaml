@@ -8,9 +8,13 @@ spec:
   upstream:
     url: http://counter-app.counter/
   match:
-    url: http://app.dev.dzhurybida.com/<.*>
+    url: <http|https>://app.dev.dzhurybida.com/counter/<.*>
     methods:
     - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
   authenticators:
     - handler: cookie_session
     - handler: bearer_token
