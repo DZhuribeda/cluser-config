@@ -12,11 +12,6 @@ resource "helm_release" "oathkeeper" {
   values = [
     "${file("oathkeeper-values.yaml")}"
   ]
-
-  # set {
-  #   name="oathkeeper.mutatorIdTokenJWKs"
-  #   value="${file("./id_token.jwks.json")}"
-  # }
 }
 
 resource "kubernetes_manifest" "oathkeeper-rule" {

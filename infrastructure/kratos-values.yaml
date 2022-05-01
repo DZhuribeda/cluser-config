@@ -19,6 +19,9 @@ kratos:
   # -- Enable the initialization job. Required to work with a DB
   autoMigrate: true
   config:
+    serve:
+      public:
+        base_url: https://app.dev.dzhurybida.com/api/kratos
     tracing:
       provider: zipkin
       providers:
@@ -34,6 +37,7 @@ kratos:
     selfservice:
     # TODO
       default_browser_return_url: http://app.dev.dzhurybida.com/
+
 
   identitySchemas:
    "identity.default.schema.json": |
