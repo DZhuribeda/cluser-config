@@ -45,3 +45,12 @@ resource "kubernetes_namespace" "argo_rollouts" {
     name = "argo-rollouts"
   }
 }
+
+resource "kubernetes_namespace" "kratos" {
+  metadata {
+    labels = {
+      monitoring        = "enabled"
+    }
+    name = "kratos"
+  }
+}

@@ -28,3 +28,12 @@ variable "argocd_domain" {}
 variable "argocd_admin_password" {
   sensitive = true
 }
+
+variable "db_size" {
+  default = "db-s-1vcpu-1gb"
+}
+
+variable "db_nodes" {
+  default = 1
+  type = number
+}
