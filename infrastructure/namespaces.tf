@@ -54,3 +54,12 @@ resource "kubernetes_namespace" "kratos" {
     name = "kratos"
   }
 }
+
+resource "kubernetes_namespace" "oathkeeper" {
+  metadata {
+    labels = {
+      monitoring        = "enabled"
+    }
+    name = "oathkeeper"
+  }
+}
